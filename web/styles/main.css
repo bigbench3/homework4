@@ -1,0 +1,42 @@
+/* 
+    (c) 2015, Ben Hay and Haris Cesko
+*/
+
+header {
+  text-align: center;
+}
+
+footer {
+  border-top: solid blue;
+  padding-left: 2em;
+}
+
+section {
+  border: solid red;
+  margin-bottom: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
+  margin-top: 1em;
+}
+
+section a {
+  font-weight: bold;
+  padding-left: 1em;
+}
+
+table {
+  padding-left: 2em;  
+}
+
+table #table_header {
+  font-weight: bold;
+}
+
+table tr th:empty {
+  width: 1em;
+}
+
+table tr td {
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
