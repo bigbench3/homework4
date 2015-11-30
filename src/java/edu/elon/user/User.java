@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String emailAddress;
     private String bookTitle;
     private String overdue;
+    private String dueDate;
 
     
     public User(){
@@ -58,6 +59,14 @@ public class User implements Serializable {
 
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
+    }
+    
+    public String getDueDate(){
+        return dueDate;
+    }
+    
+    public void setDueDate(String dueDate){
+        this.dueDate = dueDate;
     }
     
     public String getOverdue() {

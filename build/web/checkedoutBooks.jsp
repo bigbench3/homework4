@@ -4,7 +4,7 @@
 
 <%@include file="/Includes/header.html" %>
     <section>
-        <table>
+        <table id="checkedOut">
             <tr id='table_header'>
                 <th>Patron Name</th>
                 <th></th>

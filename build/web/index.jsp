@@ -3,8 +3,8 @@
 --%>
 
 <%@include file="/Includes/header.html" %>
-    <section>
-        <p><a href="checkout.jsp">Check out a book</a></p>
-        <p><a href="checkedoutBooks.jsp">Manage checked out books</a></p>
+    <section id="specialSection">
+        <a href="checkout.jsp">Check out a book</a><br><br>
+        <a href="checkedoutBooks.jsp">Manage checked out books</a>
     </section>
 <%@include file="/Includes/footer.html" %>
