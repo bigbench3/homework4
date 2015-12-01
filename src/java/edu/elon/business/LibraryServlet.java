@@ -55,9 +55,8 @@ public class LibraryServlet extends HttpServlet {
             user.setBookTitle(bookTitle);
             user.setDueDate(dueDate);
             
-        request.setAttribute("user", user);
+            request.setAttribute("user", user);
             
-        
 
             url = "/confirmedCheckout.jsp";
         } else {
