@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String lastName;
     private String emailAddress;
     private String bookTitle;
-    private String overdue;
+    private String overDue;
     private String dueDate;
 
     /**
@@ -27,7 +27,7 @@ public class User implements Serializable {
         lastName = "";
         emailAddress = "";
         bookTitle = "";
-        overdue = "";
+        overDue = "";
     }
     
     /**
@@ -125,8 +125,8 @@ public class User implements Serializable {
      * 
      * @return overdue
      */
-    public String getOverdue() {
-        return overdue;
+    public String getOverDue() {
+        return overDue;
     }
 
     /**
@@ -134,8 +134,8 @@ public class User implements Serializable {
      * 
      * @param overdue
      */
-    public void setOverdue(String overdue) {
-        this.overdue = overdue;
+    public void setOverDue(String overdue) {
+        this.overDue = overdue;
     }
     
 }

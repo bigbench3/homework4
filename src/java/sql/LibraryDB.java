@@ -31,9 +31,9 @@ public class LibraryDB {
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             
-            String dbURL = "jdbc:mysql://localhost:3307/library";
-            String username = "adminHdBQxxH";
-            String password = "84Mk8VbitbcK";
+            String dbURL = "//localhost:3306";
+            String username = "root";
+            String password = "mysqluser";
             
             String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
             if((host != null) && (host.trim().length() > 1)){
@@ -52,7 +52,7 @@ public class LibraryDB {
             ps.setString(3, user.getEmailAddress());
             ps.setString(4, user.getBookTitle());
             ps.setString(5, user.getDueDate());
-            ps.setString(6, user.getOverdue());
+            ps.setString(6, user.getOverDue());
             
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -65,21 +65,21 @@ public class LibraryDB {
     }
 
     /**
-     * deletes a row from the database
+     * deletes a row from the database based on id
      *
      * @param user
-     * @return int
+     * @return integer
      */
-    public static int delete(User user) {
+    public static int delete(int id) {
         PreparedStatement ps = null;
 
         String query = "DELETE FROM User "
-                + "WHERE Email = ?";
+                + "WHERE id = " + id;
         try {
             
-            String dbURL = "jdbc:mysql://localhost:3307/library";
-            String username = "adminHdBQxxH";
-            String password = "84Mk8VbitbcK";
+            String dbURL = "//localhost:3306";
+            String username = "root";
+            String password = "mysqluser";
             
             String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
             if((host != null) && (host.trim().length() > 1)){
@@ -92,8 +92,7 @@ public class LibraryDB {
             
             Connection connection = DriverManager.getConnection(dbURL, username, password);
             ps = connection.prepareStatement(query);
-            ps.setString(1, user.getEmailAddress());
-
+            
             return ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -116,9 +115,9 @@ public class LibraryDB {
         String query = "SELECT * FROM User";
         try {
             
-            String dbURL = "jdbc:mysql://localhost:3307/library";
-            String username = "adminHdBQxxH";
-            String password = "84Mk8VbitbcK";
+            String dbURL = "//localhost:3306";
+            String username = "root";
+            String password = "mysqluser";
             
             String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
             if((host != null) && (host.trim().length() > 1)){
@@ -140,7 +139,7 @@ public class LibraryDB {
                 user.setEmailAddress(rs.getString("emailAddress"));
                 user.setBookTitle(rs.getString("bookTitle"));
                 user.setDueDate(rs.getString("dueDate"));
-                user.setOverdue(rs.getString("overDue"));
+                user.setOverDue(rs.getString("overDue"));
                 users.add(user);
             }
             return users;
@@ -152,6 +151,6 @@ public class LibraryDB {
             DBUtil.closePreparedStatement(ps);
             //pool.freeConnection(connection);
         }
-    }    
-     
+    }
+    
 }
