@@ -17,6 +17,20 @@
                 <th>Overdue</th>
                 <th></th>
             </tr>
+            
+            <tr>
+                
+                <td>${user.bookTitle}</td>
+                <td></td>
+                <td>Meep</td>
+                <td></td>
+                <td>${users.user.bookTitle}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
            
             <%-- <c:forEach items="$(years)" var="amount" varStatus="status">
                 <tr>

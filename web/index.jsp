@@ -4,7 +4,10 @@
 
 <%@include file="/Includes/header.html" %>
     <section id="specialSection">
-        <a href="checkout.jsp">Check out a book</a><br><br>
-        <a href="checkedoutBooks.jsp">Manage checked out books</a>
+        <a href="library?action=goToCheckout&amp;">Check out a book</a><br><br>
+        <a href="library?action=goToBooks&amp;">Manage checked out books</a>
     </section>
 <%@include file="/Includes/footer.html" %>
+
+
+

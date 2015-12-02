@@ -13,6 +13,6 @@
            <span> A friendly email reminder will be sent to you if your book 
                becomes overdue.</span>
         </p>
-        <p><a href="index.jsp">Return to front page</a></p>
+        <p><a href="library?action=goToIndex&amp;">Return to front page</a></p>
     </section>
 <%@include file="/Includes/footer.html" %>
