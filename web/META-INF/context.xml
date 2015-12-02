@@ -3,13 +3,15 @@
 
 <Resource auth="Container" 
               driverClassName="com.mysql.jdbc.Driver" 
-              logAbandoned="true" maxActive="100" 
-              maxIdle="30" maxWait="10000" 
-              name="library" 
-              password="84Mk8VbitbcK" 
-              removeAbandoned="true" removeAbandonedTimeout="60" 
+              logAbandoned="true" 
+              maxActive="100" 
+              maxIdle="30" 
+              maxWait="10000" 
+              name="jdbc/MySQLDS" 
+              password="mytomcatuser" 
+              removeAbandoned="true" 
+              removeAbandonedTimeout="60" 
               type="javax.sql.DataSource" 
-              url="jdbc:mysql://localhost:3306/murach" 
-              username="adminHdBQxxH"
-    />
+              url="jdbc:mysql://localhost:3306/library" 
+              username="root"  />
 </Context>

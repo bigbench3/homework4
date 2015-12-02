@@ -27,7 +27,7 @@ public class LibraryDB {
         PreparedStatement ps = null;
 
         String query
-                = "INSERT INTO User (firstname, lastname, email, booktitle, duedate, overdue) "
+                = "INSERT INTO user (firstname, lastname, email, booktitle, duedate, overdue) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             

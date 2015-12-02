@@ -23,15 +23,15 @@
             <c:forEach items="${test}" var="users">
                 
                 <tr>
-                    <td>${test[index].firstName}</td>
+                    <td>${booksOut[index].firstName}</td>
                     <td></td>
-                    <td>${test[index].emailAddress}</td>
+                    <td>${booksOut[index].emailAddress}</td>
                     <td></td>
-                    <td>${test[index].bookTitle}</td>
+                    <td>${booksOut[index].bookTitle}</td>
                     <td></td>
-                    <td>${test[index].dueDate}</td>
+                    <td>${booksOut[index].dueDate}</td>
                     <td></td>
-                    <td>${test[index].overDue}</td>
+                    <td>${booksOut[index].overDue}</td>
                     <td></td>
                     <td>
                         <form method="post" action="library">

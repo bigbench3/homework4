@@ -62,36 +62,36 @@ public class LibraryServlet extends HttpServlet {
                 
                 ArrayList<User> test = new ArrayList();
                 
-                User user1 = new User();
-                User user2 = new User();
-                User user3 = new User();
-        
-                user1.setFirstName("test1");
-                user1.setLastName("test1");
-                user1.setEmailAddress("test1");
-                user1.setBookTitle("test1");
-                user1.setDueDate("test1");
-                
-                user2.setFirstName("test1");
-                user2.setLastName("test1");
-                user2.setEmailAddress("test1");
-                user2.setBookTitle("test1");
-                user2.setDueDate("test1");
-                
-                user3.setFirstName("test1");
-                user3.setLastName("test1");
-                user3.setEmailAddress("test1");
-                user3.setBookTitle("test1");
-                user3.setDueDate("test1");
-                
-                test.add(user1);
-                test.add(user2);
-                test.add(user3);
+//                User user1 = new User();
+//                User user2 = new User();
+//                User user3 = new User();
+//        
+//                user1.setFirstName("test1");
+//                user1.setLastName("test1");
+//                user1.setEmailAddress("test1");
+//                user1.setBookTitle("test1");
+//                user1.setDueDate("test1");
+//                
+//                user2.setFirstName("test1");
+//                user2.setLastName("test1");
+//                user2.setEmailAddress("test1");
+//                user2.setBookTitle("test1");
+//                user2.setDueDate("test1");
+//                
+//                user3.setFirstName("test1");
+//                user3.setLastName("test1");
+//                user3.setEmailAddress("test1");
+//                user3.setBookTitle("test1");
+//                user3.setDueDate("test1");
+//                
+//                test.add(user1);
+//                test.add(user2);
+//                test.add(user3);
                 
                 ArrayList<User> users = LibraryDB.selectUser();
                 
                 
-                request.setAttribute("test", users);
+                request.setAttribute("booksOut", users);
                 
                 url = "/checkedoutBooks.jsp";
                 
@@ -139,7 +139,7 @@ public class LibraryServlet extends HttpServlet {
             
 
                 url = "/confirmedCheckout.jsp";
-        }
+            }
             
 //        changes page from confirmedCheckout to index
             
