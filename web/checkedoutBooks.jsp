@@ -20,10 +20,10 @@
             </tr>
                            
                 <c:set var="index" value="0" scope="page"/>
-            <c:forEach items="${test}" var="users">
+            <c:forEach items="${booksOut}" var="users">
                 
                 <tr>
-                    <td>${booksOut[index].firstName}</td>
+                    <td>${booksOut[index].firstName} ${booksOut[index].lastName}</td>
                     <td></td>
                     <td>${booksOut[index].emailAddress}</td>
                     <td></td>

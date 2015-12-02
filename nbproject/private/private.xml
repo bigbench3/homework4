@@ -3,22 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/src/java/sql/DBUtil.java</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/styles/main.css</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/checkout.jsp</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/checkedoutBooks.jsp</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/src/java/sql/ConnectionPool.java</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/src/java/edu/elon/business/LibraryServlet.java</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/Includes/footer.html</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/src/java/sql/SqlGatewayServlet.java</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/index.jsp</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/Includes/header.html</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/src/java/edu/elon/user/User.java</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/web/confirmedCheckout.jsp</file>
-            <file>file:/C:/Users/hcesko/Desktop/homework4/src/java/sql/LibraryDB.java</file>
+            <file>file:/C:/Users/elon/Desktop/homework4/homework4/web/checkedoutBooks.jsp</file>
+            <file>file:/C:/Users/elon/Desktop/homework4/homework4/src/java/edu/elon/business/LibraryServlet.java</file>
+            <file>file:/C:/Users/elon/Desktop/homework4/homework4/src/java/sql/SqlGatewayServlet.java</file>
+            <file>file:/C:/Users/elon/Desktop/homework4/homework4/src/java/sql/DBUtil.java</file>
+            <file>file:/C:/Users/elon/Desktop/homework4/homework4/src/java/sql/LibraryDB.java</file>
+            <file>file:/C:/Users/elon/Desktop/homework4/homework4/web/styles/main.css</file>
         </group>
     </open-files>
 </project-private>

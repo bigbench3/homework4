@@ -60,35 +60,37 @@ public class LibraryServlet extends HttpServlet {
             
             if(action != null && action.equals("goToBooks")){
                 
-                ArrayList<User> test = new ArrayList();
-                
-//                User user1 = new User();
-//                User user2 = new User();
-//                User user3 = new User();
-//        
-//                user1.setFirstName("test1");
-//                user1.setLastName("test1");
-//                user1.setEmailAddress("test1");
-//                user1.setBookTitle("test1");
-//                user1.setDueDate("test1");
-//                
-//                user2.setFirstName("test1");
-//                user2.setLastName("test1");
-//                user2.setEmailAddress("test1");
-//                user2.setBookTitle("test1");
-//                user2.setDueDate("test1");
-//                
-//                user3.setFirstName("test1");
-//                user3.setLastName("test1");
-//                user3.setEmailAddress("test1");
-//                user3.setBookTitle("test1");
-//                user3.setDueDate("test1");
-//                
-//                test.add(user1);
-//                test.add(user2);
-//                test.add(user3);
-                
                 ArrayList<User> users = LibraryDB.selectUser();
+                
+                Calendar cal = GregorianCalendar.getInstance();
+                SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+                String date = outputDateFormat.format(cal.getTime());
+                
+                int currentYear = Integer.parseInt(date.substring(6));
+                int currentMonth = Integer.parseInt(date.substring(0,2));
+                int currentDay = Integer.parseInt(date.substring(2,5));
+
+                for (User u : users ){
+                    int dueYear = Integer.parseInt(u.getDueDate().substring(6));
+                    int dueMonth = Integer.parseInt(u.getDueDate().substring(0,2));
+                    int dueDay = Integer.parseInt(u.getDueDate().substring(2,5));
+                    
+                    if(u.getDueDate().equals(date)){
+                        
+                    } else{
+                        if(currentYear >= dueYear){
+                            u.setOverDue("overdue");
+                        } else {
+                            if(currentMonth >= dueMonth){
+                                u.setOverDue("overdue");
+                            } else {
+                                if(currentDay >= dueDay){
+                                    u.setOverDue("overdue");
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 
                 request.setAttribute("booksOut", users);
@@ -121,7 +123,7 @@ public class LibraryServlet extends HttpServlet {
             
                 Calendar cal = GregorianCalendar.getInstance();
                 cal.add(Calendar.DATE, 14); //adds 2 weeks to the date
-                SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM-dd-yyy");
+                SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM-dd-yyyy");
             
                 String dueDate = outputDateFormat.format(cal.getTime());
             

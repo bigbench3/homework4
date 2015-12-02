@@ -8,7 +8,7 @@
               maxIdle="30" 
               maxWait="10000" 
               name="jdbc/MySQLDS" 
-              password="mytomcatuser" 
+              password="mysqluser" 
               removeAbandoned="true" 
               removeAbandonedTimeout="60" 
               type="javax.sql.DataSource" 

@@ -5,7 +5,6 @@ package sql;
 
 import edu.elon.user.User;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,24 +26,26 @@ public class LibraryDB {
         PreparedStatement ps = null;
 
         String query
-                = "INSERT INTO user (firstname, lastname, email, booktitle, duedate, overdue) "
+                = "INSERT INTO library.user (firstName, lastName, emailAddress, bookTitle, dueDate, overDue) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
+        
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection connection = cp.getConnection();
+        
         try {
             
-            String dbURL = "//localhost:3306";
-            String username = "root";
-            String password = "mysqluser";
-            
-            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-            if((host != null) && (host.trim().length() > 1)){
-                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-                String appname = System.getenv("OPENSHIFT_APP_NAME");
-                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
-            }
-            
-            Connection connection = DriverManager.getConnection(dbURL, username, password);
+//            String dbURL = "jdbc:mysql://localhost:3306/MySQLDS";
+//            String username = "root";
+//            String password = "mysqluser";
+//            
+//            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//            if((host != null) && (host.trim().length() > 1)){
+//                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//                String appname = System.getenv("OPENSHIFT_APP_NAME");
+//                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+//                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+//                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+//            }     
             
             ps = connection.prepareStatement(query);
             ps.setString(1, user.getFirstName());
@@ -60,7 +61,7 @@ public class LibraryDB {
             return 0;
         } finally {
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            cp.freeConnection(connection);
         }
     }
 
@@ -73,24 +74,27 @@ public class LibraryDB {
     public static int delete(int id) {
         PreparedStatement ps = null;
 
-        String query = "DELETE FROM User "
-                + "WHERE id = " + id;
+        String query = "DELETE FROM user "
+                + "WHERE id = " + (id + 1);
+        
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection connection = cp.getConnection();
+        
         try {
             
-            String dbURL = "//localhost:3306";
-            String username = "root";
-            String password = "mysqluser";
+//            String dbURL = "jdbc:mysql://localhost:3306";
+//            String username = "root";
+//            String password = "mysqluser";
+//            
+//            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//            if((host != null) && (host.trim().length() > 1)){
+//                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//                String appname = System.getenv("OPENSHIFT_APP_NAME");
+//                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+//                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+//                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+//            }
             
-            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-            if((host != null) && (host.trim().length() > 1)){
-                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-                String appname = System.getenv("OPENSHIFT_APP_NAME");
-                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
-            }
-            
-            Connection connection = DriverManager.getConnection(dbURL, username, password);
             ps = connection.prepareStatement(query);
             
             return ps.executeUpdate();
@@ -99,7 +103,7 @@ public class LibraryDB {
             return 0;
         } finally {
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            cp.freeConnection(connection);
         }
     }
 
@@ -112,26 +116,30 @@ public class LibraryDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection connection = cp.getConnection();
+        
         String query = "SELECT * FROM User";
+        
         try {
             
-            String dbURL = "//localhost:3306";
-            String username = "root";
-            String password = "mysqluser";
+//            String dbURL = "jdbc:mysql://localhost:3306/library";
+//            String username = "root";
+//            String password = "mysqluser";
+//            
+//            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//            if((host != null) && (host.trim().length() > 1)){
+//                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//                String appname = System.getenv("OPENSHIFT_APP_NAME");
+//                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+//                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+//                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+//            }
             
-            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-            if((host != null) && (host.trim().length() > 1)){
-                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-                String appname = System.getenv("OPENSHIFT_APP_NAME");
-                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
-            }
-            
-            Connection connection = DriverManager.getConnection(dbURL, username, password);
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
             ArrayList<User> users = new ArrayList<>();
+            
             while (rs.next()){
                 User user = new User();
                 user.setFirstName(rs.getString("firstName"));
@@ -149,7 +157,7 @@ public class LibraryDB {
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);
-            //pool.freeConnection(connection);
+            cp.freeConnection(connection);
         }
     }
     
