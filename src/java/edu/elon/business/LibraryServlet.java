@@ -69,22 +69,32 @@ public class LibraryServlet extends HttpServlet {
                 int currentYear = Integer.parseInt(date.substring(6));
                 int currentMonth = Integer.parseInt(date.substring(0,2));
                 int currentDay = Integer.parseInt(date.substring(2,5));
+                
+                if(currentDay < 0){
+                    currentDay = currentDay * -1;
+                }
+                
+                Integer curDay = (Integer) currentDay;
 
                 for (User u : users ){
                     int dueYear = Integer.parseInt(u.getDueDate().substring(6));
                     int dueMonth = Integer.parseInt(u.getDueDate().substring(0,2));
                     int dueDay = Integer.parseInt(u.getDueDate().substring(2,5));
                     
+                    if(dueDay < 0){
+                        dueDay = dueDay * -1;
+                    }
+                    
                     if(u.getDueDate().equals(date)){
                         
                     } else{
-                        if(currentYear >= dueYear){
+                        if(currentYear > dueYear){
                             u.setOverDue("overdue");
                         } else {
-                            if(currentMonth >= dueMonth){
+                            if(currentMonth > dueMonth){
                                 u.setOverDue("overdue");
                             } else {
-                                if(currentDay >= dueDay){
+                                if(currentDay > dueDay){
                                     u.setOverDue("overdue");
                                 }
                             }
@@ -102,12 +112,13 @@ public class LibraryServlet extends HttpServlet {
 //            checks in the book selected and removes the row from the database
             
             if(action != null && action.equals("doCheckIn")){
-                url = "/checkedoutBooks.jsp";
+                              
+                String id = request.getParameter("userID");
                 
-                int index = Integer.parseInt(request.getParameter("var"));
+                LibraryDB.delete(id);
+                request.setAttribute("identity", id);
                 
-                
-                
+                url = "/index.jsp";
             }
             
 //        changes page from checkout to confirmedCheckout and reads in data from 

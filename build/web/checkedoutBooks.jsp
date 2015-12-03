@@ -34,8 +34,10 @@
                     <td>${booksOut[index].overDue}</td>
                     <td></td>
                     <td>
-                        <form method="post" action="library">
-                            <input var="${index}" type="submit" value="Check in" action="doCheckIn" id="checkin">                            
+                        <form method="post" action="library">        
+                            <input type="hidden" name="action" value="doCheckIn">
+                            <input type="hidden" name="userID" value="${booksOut[index].id}">
+                            <input type="submit" value="Check in" id="checkin"> 
                         </form>
                     </td>    
                 </tr>

@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String bookTitle;
     private String overDue;
     private String dueDate;
+    private String id;
 
     /**
      * a non-argument constructor for the User class
@@ -28,6 +29,8 @@ public class User implements Serializable {
         emailAddress = "";
         bookTitle = "";
         overDue = "";
+        dueDate = "";
+        id = "";
     }
     
     /**
@@ -118,6 +121,26 @@ public class User implements Serializable {
      */
     public void setDueDate(String dueDate){
         this.dueDate = dueDate;
+    }
+    
+    /**
+     * gets the id
+     * 
+     * @return id 
+     */
+    
+    public String getId(){
+        return id;
+    }
+    
+    /**
+     * sets the id
+     * 
+     * @param id 
+     */
+    
+    public void setId(String id){
+        this.id = id;
     }
     
     /**

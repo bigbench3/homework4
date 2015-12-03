@@ -34,18 +34,18 @@ public class LibraryDB {
         
         try {
             
-//            String dbURL = "jdbc:mysql://localhost:3306/MySQLDS";
-//            String username = "root";
-//            String password = "mysqluser";
-//            
-//            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-//            if((host != null) && (host.trim().length() > 1)){
-//                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-//                String appname = System.getenv("OPENSHIFT_APP_NAME");
-//                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-//                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-//                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
-//            }     
+            String dbURL = "jdbc:mysql://localhost:3306/MySQLDS";
+            String username = "root";
+            String password = "mysqluser";
+            
+            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+            if((host != null) && (host.trim().length() > 1)){
+                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+                String appname = System.getenv("OPENSHIFT_APP_NAME");
+                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+            }     
             
             ps = connection.prepareStatement(query);
             ps.setString(1, user.getFirstName());
@@ -71,31 +71,33 @@ public class LibraryDB {
      * @param user
      * @return integer
      */
-    public static int delete(int id) {
+    public static int delete(String id) {
         PreparedStatement ps = null;
 
-        String query = "DELETE FROM user "
-                + "WHERE id = " + (id + 1);
+        String query
+                = "delete from library.user where id = ?;";
         
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection connection = cp.getConnection();
         
         try {
             
-//            String dbURL = "jdbc:mysql://localhost:3306";
-//            String username = "root";
-//            String password = "mysqluser";
-//            
-//            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-//            if((host != null) && (host.trim().length() > 1)){
-//                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-//                String appname = System.getenv("OPENSHIFT_APP_NAME");
-//                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-//                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-//                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
-//            }
+            String dbURL = "jdbc:mysql://localhost:3306";
+            String username = "root";
+            String password = "mysqluser";
+            
+            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+            if((host != null) && (host.trim().length() > 1)){
+                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+                String appname = System.getenv("OPENSHIFT_APP_NAME");
+                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+            }
             
             ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            //ps.setString(1, identity.toString());
             
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -123,18 +125,18 @@ public class LibraryDB {
         
         try {
             
-//            String dbURL = "jdbc:mysql://localhost:3306/library";
-//            String username = "root";
-//            String password = "mysqluser";
-//            
-//            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-//            if((host != null) && (host.trim().length() > 1)){
-//                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-//                String appname = System.getenv("OPENSHIFT_APP_NAME");
-//                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-//                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-//                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
-//            }
+            String dbURL = "jdbc:mysql://localhost:3306/library";
+            String username = "root";
+            String password = "mysqluser";
+            
+            String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+            if((host != null) && (host.trim().length() > 1)){
+                String port  = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+                String appname = System.getenv("OPENSHIFT_APP_NAME");
+                username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+                password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+                dbURL = "jdbc:mysql://" + host + ":" + port + "/" + appname;
+            }
             
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
@@ -148,6 +150,7 @@ public class LibraryDB {
                 user.setBookTitle(rs.getString("bookTitle"));
                 user.setDueDate(rs.getString("dueDate"));
                 user.setOverDue(rs.getString("overDue"));
+                user.setId(rs.getString("id"));
                 users.add(user);
             }
             return users;
